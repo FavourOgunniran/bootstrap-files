@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="stopwatch.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+</head>
+<body class="bg-dark">
+    
+   <center> <div id="stopwatchi">
+           <p style="font-size: 70px;" class="text-light">C A S I O</p>
+
+          <div class="mt-5">
+              <h2 id="hrs" class="text-light" >HRS</h2> 
+              <h2 id="mns" class="text-light">MIN</h2>
+              <h2 id="sec" class="text-light">SEC</h2>
+              <input type="number" name="" id="s" class="inp" placeholder="00"> <span style="font-size: 80px;" class="text-light">:</span>
+           <input type="number" name="" id="minut" class="inp" placeholder="00">  <span style="font-size: 80px;" class="text-light">:</span>
+           <input type="number" name="" id="hh" class="inp" placeholder="00"></div>
+            <p class="mt-5">
+                <h3 class="text-light">TIMER</h3>
+                <button class="btn btn-primary mx-3" onclick="seconds()"  >START</button>  <button class="btn btn-primary mx-3" onclick="stopit()">STOP</button>
+                
+
+               
+
+            </p>
+            <div class="mt-5"> 
+                <h3 class="text-light">STOPWATCH</h3>
+                <button class="btn btn-primary mx-3  " onclick="count()">START</button><button class="btn btn-primary mx-3" onclick="stp()">STOP</button>  </div>
+           
+    </div></center>
+    <audio src="audio/record20210308102429.3gpp" id="voice"  preload="auto"></audio>
+    <script>
+       var i = 1;
+       var m = 1
+       var r = 0
+       var start = null;
+
+            
+       function seconds(){
+      
+        if ( hh.value == r && s.value ==r && minut.value ==r){
+            hh.value =  r
+            minut.value =  "0"+r
+            s.value =  "0"+r
+        }
+
+        if ( hh.value != r ){
+              hh.value--
+        }
+
+        if (hh.value<=9){
+            hh.value =  "0"+hh.value
+        }
+
+           if( minut.value !=r && hh.value == r){
+            hh.value =59
+            minut.value--
+            if (minut.value<=9){
+            minut.value =  "0"+minut.value
+        }
+        }
+       
+        if( s.value !=r && minut.value==r ){
+            minut.value = 59
+            s.value--
+            if (s.value<=9){
+            s.value =  "0"+s.value
+        }   
+        }
+     
+       
+       setTimeout(seconds,1000)
+       
+       }
+  
+function stopit(){
+    hh.value=0
+    s.value = 0
+    minut.value = 0
+    
+    clearInterval( setInterval(seconds,1000))
+}
+     
+
+       function count(){
+
+
+        if ( hh.value !=60){
+            hh.value++
+        }
+
+        if( minut.value!=60 && hh.value==60 ){
+            minut.value++
+            hh.value = 0
+        }
+
+        if (s.value!=60 && minut.value==60){
+            s.value++
+            minut.value=0
+        }
+      
+
+           setTimeout(count,1000)
+       }
+       function stp(){
+    hh.value=0
+    s.value = 0
+    minut.value = 0
+    
+    clearTimeout( setTimeout(count,1000))
+}
+
+       
+
+    </script>
+</body>
+</html>

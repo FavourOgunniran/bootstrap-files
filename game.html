@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIC-TAC-TOE GAME</title>
+    <link rel="stylesheet" href="game.css">
+</head>
+<body>
+   <center><table >
+       
+        <tr>
+                <td colspan="2" align="center" style="font-size: 30px; color: white;" ><h2 id="theh"> TIC-TAC-TOE</h2></td>
+
+    </tr>
+    <tr><td colspan="3" align="center" onclick="launch()" id="lnch"><button>LAUNCH</button></td></tr>
+
+    <tr> <center><td align="center" colspan="2" style="font-size: 30px; " id="en"> ENTER YOUR NAME</td></center></tr>
+        <tr>
+  
+
+
+
+            <td ><input type="text" name="" id="player1" placeholder="PLAYER X" style="display: none;"></td>
+            <td ><input type="text" name="" id="player" placeholder="PLAYER O"></td>
+
+        </tr>
+        <tr><td> <div> <div id="score" >SCORE</div><div id="plnames"></div><span id="sn"></span>
+            <div id="plname2"></div><span id="sn2"></span></div>
+        </td></tr>
+    </table></center>
+  <center> <div><button onclick="start()" id="starter">START</button>  <button onclick="res()" style="display: none; margin-top: 20px;" id="restart">RESTART</button> <button onclick="respawn()" id="repo">replay</button>
+    <button  id="esc" style="display: none; margin-top: 1px;" onclick="quit()" >quit</button>
+<p><div id="entername">please enter your names before proceeding...</div><div id="entername2"></div></p></center>
+
+   <center> <table id="tictable" style="display:none;" >
+        <tr>
+            <td><input type="button"  class="ttt" onclick="tic(event) , won()"  id="b1"></td>
+            <td><input type="button"  class="ttt" onclick="tic(event) , won()" id="b2"></td>
+            <td><input type="button"  class="ttt" onclick="tic(event) , won()" id="b3"></td>
+        </tr>
+        <tr>
+            <td><input type="button"  class="ttt" onclick="tic(event) , won()" id="b4"></td>
+            <td><input type="button"  class="ttt" onclick="tic(event) , won()" id="b5"></td>
+            <td><input type="button"  class="ttt" onclick="tic(event) , won()" id="b6"></td>
+        </tr>
+        <tr>
+            <td><input type="button"  class="ttt" onclick="tic(event) , won()" id="b7"></td>
+            <td><input type="button"  class="ttt" onclick="tic(event) , won()"id="b8"></td>
+            <td><input type="button"  class="ttt" onclick="tic(event) , won()" id="b9"></td>
+        </tr>
+
+
+    </table></center>
+    <center><div id="dev" style="display: none;"><p style="font-size: 30px; color: white;" >ARE YOU SURE YOU WANT TO QUIT?</p>
+             <center> <p><button onclick="yes()">YES</button> <button onclick="no()">NO</button></p></center> </div></center>
+     <div id="result" ><span></span>: <span></span> </div>
+           <!-- <center><button  id="esc" style="display: none; margin-top: 1px;" onclick="quit()" >quit</button></center> -->
+        </div>
+ <audio src="audio/winsound.m4a" preload="auto" id="ws"></audio>
+    <script>
+   var num=0
+       
+var v =0;
+var y = 0;
+
+function respawn(){
+    b1.value=""
+ b2.value=""
+ b3.value=""
+ b4.value=""
+ b5.value=""
+ b6.value=""
+ b7.value=""
+ b8.value=""
+ b9.value=""
+ entername.innerHTML=""
+ repo.style="display:none"
+ b1.disabled=false
+       b2.disabled=false
+       b3.disabled=false
+       b4.disabled=false
+       b5.disabled=false
+       b6.disabled=false
+       b7.disabled=false
+       b8.disabled=false
+       b9.disabled=false
+       entername2.style="display:none"
+
+ 
+}
+
+
+         function tic(e){
+             if (e.target.value=="" && num==0) {
+                 e.target.value ="x"
+                 num=1
+             } else if(e.target.value=="" && num==1){
+                e.target.value ="o"
+                 num=0  
+             }
+      
+         }
+function start(){
+    if ( player.value!= "" && player1.value!="") {
+        tictable.style="display:block;"
+  tictable.style="margin:auto;"
+  tictable.style="margin-top:0px;"
+  en.style="display:none;"
+  starter.style="display:none;"
+  restart.style="display:inline;"
+    player.style="display:none;"
+    player1.style="display:none;"
+    esc.style="display:inline;"
+   
+    plnames.innerHTML=player1.value+ " "+ " " +" "+ ":"+ v
+    plname2.innerHTML=player.value+ " "+ " " +" "+ ":"+ y
+    plnames.style="display:block;"
+    plname2.style="display:block"
+    
+ 
+    score.style="display:block;"
+    entername.style="display:none;"
+    theh.style="font-size: 50px;" 
+        
+    }
+   
+
+
+    if (player.value== "" && player1.value=="") {
+        entername.style="display:block;"
+    }
+    if (player.value== "" && player1.value!="") {
+        entername.style="display:block;"
+    }
+    if (player.value!= "" && player1.value=="") {
+        entername.style="display:block;"
+    }
+ 
+  
+}
+function res(){
+ 
+ b1.value=""
+ b2.value=""
+ b3.value=""
+ b4.value=""
+ b5.value=""
+ b6.value=""
+ b7.value=""
+ b8.value=""
+ b9.value=""
+ v=0
+ y=0
+ entername.innerHTML=""
+ plnames.innerHTML=player1.value+ " "+":"+  v
+ plname2.innerHTML=player.value+ " "+":"+ y
+ repo.style="display:none;" 
+ b1.disabled=false
+       b2.disabled=false
+       b3.disabled=false
+       b4.disabled=false
+       b5.disabled=false
+       b6.disabled=false
+       b7.disabled=false
+       b8.disabled=false
+       b9.disabled=false
+       entername2.style="display:none"  
+      
+   
+   }   
+   
+
+   function launch(){
+       lnch.style="display:none;"
+       player.style="display:block;"
+       player1.style="display:block;"
+       starter.style="display:block;"
+       en.style="display:inline;"
+       dev.style="display:none;"
+       plnames.style="display:none;"
+
+
+   }
+   function quit(){
+    dev.style="display:block;"      
+    player.style="display:none;"
+       player1.style="display:none;"
+       starter.style="display:none;"
+       tictable.style="display:none;"
+       esc.style="display:none;"
+       restart.style="display:none;"
+       plnames.style="display:none;"
+    plname2.style="display:none"
+    // slash.style="display:none;"
+    entername.style="display:none;"
+    score.style="display:none;" 
+    repo.style="display:none;" 
+    entername2.style="display:none"
+   }
+   function no(){
+    tictable.style="display:block;"
+  tictable.style="margin:auto;"
+  tictable.style="margin-top:30px;"
+  en.style="display:none;"
+  starter.style="display:none;"
+  restart.style="display:inline;"
+    player.style="display:none;"
+    player1.style="display:none;"
+   esc.style="display:inline;"
+    dev.style= "display:none"
+    plnames.style="display:block;"
+    plname2.style="display:block"
+    // slash.style="display:block;"
+    score.style="display:block;" 
+    repo.style="display:inline;" 
+    entername2.style="display:none"
+   }
+   function yes(){
+    lnch.style="display:block;"
+    dev.style= "display:none"
+    // slash.style="display:none;"
+    score.style="display:none;"
+    player.value=""
+    player1.value=""
+    b1.value=""
+ b2.value=""
+ b3.value=""
+ b4.value=""
+ b5.value=""
+ b6.value=""
+ b7.value=""
+ b8.value=""
+ b9.value=""
+ v=0
+ y=0
+//  entername.innerHTML=""
+ plnames.innerHTML=player1.value+ " "+":"+  v
+ plname2.innerHTML=player.value+ " "+":"+ y
+ theh.style="font-size: 90px;" 
+ b1.disabled=false
+       b2.disabled=false
+       b3.disabled=false
+       b4.disabled=false
+       b5.disabled=false
+       b6.disabled=false
+       b7.disabled=false
+       b8.disabled=false
+       b9.disabled=false
+       entername2.style="display:none"
+    
+   }
+
+   function won(){
+    var x =0;
+       if(b1.value=="x"   && b2.value=="x"  && b3.value=="x" ){
+        entername.style= "display:block;"
+       entername.innerHTML=player1.value+ " "+ "has won"
+       v++
+       plnames.innerHTML=player1.value+ " "+":"+ v
+       repo.style="display:inline"
+      dis()
+       ws.play()
+      
+       
+       
+
+    // plname2.innerHTML=player.value+ " "+ y
+        
+       
+    //    x=x+1
+    //    x=x
+    
+       }
+
+       else if(b4.value=="x"    && b5.value=="x"  && b6.value=="x" ){
+        entername.style= "display:block;"
+       entername.innerHTML=player1.value+ " "+ "has won" 
+       v++
+       plnames.innerHTML=player1.value+ " "+":"+ v
+       repo.style="display:inline"
+      dis()
+       ws.play()
+       
+        
+       }
+
+       else if(b7.value=="x"   && b8.value=="x"   && b9.value=="x"){
+        entername.style= "display:block;"
+       entername.innerHTML=player1.value+ " "+ "has won" 
+       v++
+       plnames.innerHTML=player1.value+ " "+":"+ v
+        repo.style="display:inline"
+        dis()
+       ws.play()
+       
+        // result.innerHTML = x+1
+       }
+
+       //the os
+
+      else if( b1.value=="o"   &&  b2.value=="o" &&  b3.value=="o"  ){
+        entername.style= "display:block;"
+       entername.innerHTML=player.value+ " "+ "has won" 
+       y++
+       plname2.innerHTML=player.value+ " "+":"+ y
+    //    y=y+1
+          repo.style="display:inline"
+         dis()
+       ws.play()
+       }
+
+       else if( b4.value=="o"   &&  b5.value=="o" &&  b6.value=="o"  ){
+        entername.style= "display:block;"
+       entername.innerHTML=player.value+ " "+ "has won"  
+       y++
+       plname2.innerHTML=player.value+ " "+":"+ y
+        repo.style="display:inline"
+         dis()
+       ws.play()
+       }
+      else if( b7.value=="o"   &&  b8.value=="o" &&  b9.value=="o"  ){
+         
+        entername.style= "display:block;"
+       entername.innerHTML=player.value+ " "+ "has won"  
+       y++
+       plname2.innerHTML=player.value+ " "+":"+ y
+         repo.style="display:inline"
+         dis()
+       ws.play()
+       }
+
+    
+
+
+
+       // the vertical
+       if( b1.value=="o"   &&  b4.value=="o" &&  b7.value=="o"  ){
+        entername.style= "display:block;"
+        entername.innerHTML=player.value+ " "+ "has won"  
+        y++
+       plname2.innerHTML=player.value+ " "+":"+ y
+         repo.style="display:inline"
+        dis()
+       ws.play()
+        }
+ 
+         if( b2.value=="o"   &&  b5.value=="o" &&  b8.value=="o"  ){
+            entername.style= "display:block;"
+            entername.innerHTML=player.value+ " "+ "has won"  
+            y++
+       plname2.innerHTML=player.value+ " "+":"+ y
+        repo.style="display:inline"
+       dis()
+       ws.play()
+        }
+       if( b3.value=="o"   &&  b6.value=="o" &&  b9.value=="o"  ){
+        entername.style= "display:block;"
+        entername.innerHTML=player.value+ " "+ "has won"  
+        y++
+       plname2.innerHTML=player.value+ " "+":"+ y
+         repo.style="display:inline"
+         dis()
+       ws.play()
+        }
+ 
+
+
+
+
+        if(b1.value=="x"   && b4.value=="x"  && b7.value=="x" ){
+            entername.style= "display:block;"
+            entername.innerHTML=player1.value+ " "+ "has won" 
+            v++
+       plnames.innerHTML=player1.value+ " "+":"+ v
+        repo.style="display:inline"
+        dis()
+       ws.play()
+    }
+
+     if(b2.value=="x"    && b5.value=="x"  && b8.value=="x" ){
+        entername.style= "display:block;"
+        entername.innerHTML=player1.value+ " "+ "has won"
+        v++
+       plnames.innerHTML=player1.value+ " "+":"+ v
+          repo.style="display:inline"
+          dis()
+       ws.play()
+    }
+
+     if(b3.value=="x"   && b6.value=="x"   && b9.value=="x"){
+        entername.style= "display:block;"
+        entername.innerHTML=player1.value+ " "+ "has w  on"
+        v++
+       plnames.innerHTML=player1.value+ " "+":"+ v
+          repo.style="display:inline"
+          dis()
+       ws.play()
+    }
+   // diagonal 
+
+   if(b1.value=="x"   && b5.value=="x"  && b9.value=="x" ){
+    entername.style= "display:block;"
+    entername.innerHTML=player1.value+ " "+ "has won" 
+    v++
+       plnames.innerHTML=player1.value+ " "+":"+ v
+         repo.style="display:inline"
+         dis()
+       ws.play()
+       
+    }
+    if(b3.value=="x"   && b5.value=="x"  && b7.value=="x" ){
+        entername.style= "display:block;"
+        entername.innerHTML=player1.value+ " "+ "has won" 
+        v++
+       plnames.innerHTML=player1.value+ " "+":"+ v
+        repo.style="display:inline" 
+        dis()
+       ws.play()
+    }
+
+
+    //diagonal o
+    if(b1.value=="o"   && b5.value=="o"  && b9.value=="o" ){
+        entername.style= "display:block;"
+        entername.innerHTML=player.value+ " "+ "has won"  
+        entername.innerHTML.style="color:green;"
+        y++
+       plname2.innerHTML=player.value+ " "+":"+ y
+     
+         repo.style="display:inline"
+        dis()
+       ws.play()
+    }
+    if(b3.value=="o"   && b5.value=="o"  && b7.value=="o" ){
+       entername.style= "display:block;"
+       entername.innerHTML=player.value+ " "+ "has won" 
+       y++
+       plname2.innerHTML=player.value+ " "+":"+ y
+         repo.style="display:inline"
+        dis()
+       ws.play()
+    }
+    if(b1.value=="x"   && b5.value=="x"  && b9.value=="x" ){
+        entername.style= "display:block;"
+        entername.innerHTML= player1.value+ " "+ "has won"
+        entername.innerHTML.style="color:green;"
+        
+       plnames.innerHTML=player1.value+ " "+":"+ v
+      
+       repo.style="display:inline"
+     dis()
+              ws.play()
+    }
+    if(b3.value=="x"   && b5.value=="x"  && b7.value=="x" ){
+       entername.style= "display:block;"
+       entername.innerHTML="player x has won" 
+       entername.innerHTML=player1.value+ " "+ "has won"
+       
+       plnames.innerHTML=player1.value+ " "+":"+ v
+         repo.style="display:inline"
+       dis()
+       ws.play()
+    }
+
+    else  if (b1.value != "" && b2.value !="" && b3.value != "" && b4.value !="" && b5.value != "" && b6.value !="" && b7.value != "" && b8.value !="" && b9.value != "" ) {
+        entername2.style="display:block"
+        entername2.innerHTML="it's a DRAW"
+          repo.style="display:inline" 
+       dis()
+              
+    }
+  
+
+    // if ((b1.value == "x" || b1.value =="o") && (b2.value == "x" || b2.value =="o") && ( b3.value == "x" || b3.value =="o") && (b4.value == "x" || b4.value =="o") && (b5.value == "x" || b5.value=="o") && (b6.value == "x" || b6.value=="o") && (b7.value == "x" || b7.value=="o") && (b8.value == "x" || b8.value=="o") && (b9.value == "x" || b9.value=="o")) {
+    //     entername2.style=="display:inlmine"
+    //     entername2.innerHTML="it's a DRAW"
+    //     repo.style="display:inline" 
+        
+    
+    // }
+   
+ 
+  
+    
+}
+function dis(){
+  b1.disabled=true
+       b2.disabled=true
+       b3.disabled=true
+       b4.disabled=true
+       b5.disabled=true
+       b6.disabled=true
+       b7.disabled=true
+       b8.disabled=true
+       b9.disabled=true       
+}
+
+
+
+
+   
+//    won()
+   </script>
+</body>
+</html>
